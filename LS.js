@@ -2,6 +2,7 @@
 	'use strict';
 	
 	var uid = 0,
+		slice = Array.prototype.slice,
 		store = window.localStorage,
 		listeners = {
 			create: [],
@@ -21,7 +22,7 @@
 	/* trigger all the listeners registered with given type */
 	function trigger(type){
 		if(!listeners[type]) return;
-		var params = arguments.slice(1),
+		var params = slice.call(arguments, 1),
 			callFn = function(fn){
 				fn.apply(fn.___scope, params);
 			};
@@ -51,25 +52,25 @@
 		if(empty(key) || empty(value)) return;
 		var oldVal = LSProto.get(key);
 		store.setItem(key, value);
-		trigger(oldVal ? listeners.update: listeners.create, key, value, oldVal);
+		trigger(oldVal ? 'update': 'create', key, value, oldVal);
 	}
 	
 	LSProto.setJson = function(key, value){
 		if(empty(key) || empty(value)) return;
 		var oldVal = LSProto.get(key);
 		store.setItem(key, JSON.stringify(value));
-		trigger(oldVal ? listeners.update: listeners.create, key, value, oldVal);
+		trigger(oldVal ? 'update': 'create', key, value, oldVal);
 	}
 
 	LSProto.remove = function(key){
 		if(empty(key)) return;
 		store.removeItem(key);
-		trigger(listeners.remove, key);
+		trigger('remove', key);
 	}
 
 	LSProto.clear = function(){
 		store.clear();
-		trigger(listeners.clear);
+		trigger('clear');
 	}
 	
 	/* register a listener for type. 
