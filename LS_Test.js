@@ -208,7 +208,10 @@
 	});	
 	
 	QUnit.test('Test multiple event listener create/update/remove/clear', function(assert){
-		var onCreate = onUpdate = onRemove = onClear = 0,
+		var onCreate = 0,
+			onUpdate = 0,
+			onRemove = 0,
+			onClear = 0,
 			key = 'key',
 			value = 'value',
 			valueUpdated = 'value-updated',
