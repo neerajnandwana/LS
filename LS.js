@@ -2,7 +2,6 @@
 	'use strict';
 	
 	var uid = 0,
-		toString = {}.toString,
 		store = window.localStorage,
 		listeners = {
 			create: [],
