@@ -1,7 +1,7 @@
 (function(window, undefined){
 	'use strict';
 	
-    var uid = 0,
+	var uid = 0,
 		toString = {}.toString,
 		store = window.localStorage,
 		listeners = {
@@ -11,9 +11,9 @@
 			clear: []
 		};
     
-    function empty(val){
-        return val === undefined || val === null;
-    }
+	function empty(val){
+		return val === undefined || val === null;
+	}
 	
 	function isFunc(fn){
 		return typeof fn === 'function';
@@ -38,40 +38,40 @@
 	
 	var LSProto = LS.prototype;
 	
-    LSProto.get = function(key){
-        if(empty(key)) return;
-        return store.getItem(key);
-    }
+	LSProto.get = function(key){
+		if(empty(key)) return;
+		return store.getItem(key);
+	}
 	
 	LSProto.getJson = function(key){
-        if(empty(key)) return;
-        return JSON.parse(store.getItem(key));
-    }
+		if(empty(key)) return;
+		return JSON.parse(store.getItem(key));
+	}
 
-    LSProto.set = function(key, value){
-        if(empty(key) || empty(value)) return;
+	LSProto.set = function(key, value){
+		if(empty(key) || empty(value)) return;
 		var oldVal = LSProto.get(key);
-        store.setItem(key, value);
+		store.setItem(key, value);
 		trigger(oldVal ? listeners.update: listeners.create, key, value, oldVal);
-    }
+	}
 	
 	LSProto.setJson = function(key, value){
-        if(empty(key) || empty(value)) return;
+		if(empty(key) || empty(value)) return;
 		var oldVal = LSProto.get(key);
-        store.setItem(key, JSON.stringify(value));
+		store.setItem(key, JSON.stringify(value));
 		trigger(oldVal ? listeners.update: listeners.create, key, value, oldVal);
-    }
+	}
 
-    LSProto.remove = function(key){
-        if(empty(key)) return;
-        store.removeItem(key);
+	LSProto.remove = function(key){
+		if(empty(key)) return;
+		store.removeItem(key);
 		trigger(listeners.remove, key);
-    }
+	}
 
-    LSProto.clear = function(){
-        store.clear()
+	LSProto.clear = function(){
+		store.clear();
 		trigger(listeners.clear);
-    }
+	}
 	
 	/* register a listener for type. 
 	   It will return the function which can be used for un-registering the listener. */
@@ -103,7 +103,7 @@
 		listeners[type] = [];
 	}
 
-    window.LS = window.LS || new LS();    
+	window.LS = window.LS || new LS();    
 	
 	/* Register as a named AMD module */
 	if (typeof define === 'function' && define.amd) {
