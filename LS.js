@@ -19,6 +19,9 @@
 		return typeof fn === 'function';
 	}
 
+	function isStringFloat(n){
+		return n.indexOf('.') > -1 ? true:false;
+	}
 	/* trigger all the listeners registered with given type */
 	function trigger(type){
 		if(!listeners[type]) return;
@@ -46,6 +49,32 @@
 	LSProto.getJson = function(key){
 		if(empty(key)) return;
 		return JSON.parse(store.getItem(key));
+	}
+	
+	LSProto.getNumber = function(key){
+		if(empty(key)) return;		
+		var val = store.getItem(key);
+		if(isStringFloat(val)){
+			val = parseFloat(val);
+		} else {
+			val = parseInt(val, 10);
+		}
+		return val;
+	}
+	
+	LSProto.getBoolean = function(key){
+		if(empty(key)) return;
+		var val = store.getItem(key) || '',
+			//false value list
+			boolVal = {
+				'0': 		false,
+				'': 		false,
+				'null': 	false,
+				'undefined':false,
+				'false': 	false
+			};
+		
+		return boolVal[val] === false ? false: true;
 	}
 
 	LSProto.set = function(key, value){
