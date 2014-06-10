@@ -5,5 +5,5 @@ Wrapper around the window.localStorage with useful functionality apart from norm
 <h3>For example: </h3>
 <ul>
 <li>JSON get/set and boolean, number get, </li>
-<li>Event registering for type create/update/remove/clear</li>
+<li>Event registering for type create/update/remove/clear events</li>
 </ul>
