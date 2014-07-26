@@ -24,7 +24,7 @@ LS.getBoolean(key): Boolean
 
 
 //Event API
-LS.on(event, listenerFunction, scope): function //which can be used for unregistering from event
+LS.on(event, listenerFunction, scope): function //this return function can be used for unregistering from event
 
 //different type and listeners callback param
 events type: 'create'	listenerFunction callback param: key, value
