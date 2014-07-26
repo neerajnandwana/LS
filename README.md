@@ -44,6 +44,6 @@ var updateListenerFn = LS.on('update', function(key, newValue, oldValue){
 	//code	
 });
 
-unregistering listener
+//unregistering listener
 LS.un('update', updateListenerFn);
 ```
