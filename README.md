@@ -18,7 +18,7 @@ LS.remove(key)
 LS.clear()
 
 LS.get(key): String
-LS.getJson(key): Json Object
+LS.getJson(key): JsonObject
 LS.getNumber(key): Int
 LS.getBoolean(key): Boolean
 
