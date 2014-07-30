@@ -246,4 +246,77 @@
 		assert.equal(onClear, 3, '3- clear listener invoked');
 	});
 
+	QUnit.test('Test single listener register for multiple event type', function(assert){
+		var listenerInvoked = 0,
+			key = 'key',
+			value = 'value',
+			valueUpdated = 'value-updated',
+			keyJson = 'keyJson',
+			valueJson = {name: 'name-1', age: '22'},
+			valueJsonUpdated = {name: 'name-1-updated', age: '22-updated'};
+		
+		function commonListener(){ listenerInvoked ++ };
+
+		LS.on('create', commonListener);
+		LS.on('update', commonListener);
+		LS.on('remove', commonListener);
+		LS.on('clear', commonListener);
+
+		LS.set(key, value);
+		LS.set(key, valueUpdated);
+		LS.setJson(keyJson, valueJson);
+		LS.setJson(keyJson, valueJsonUpdated);
+		LS.remove(key);
+		LS.remove(keyJson);
+		assert.equal(listenerInvoked, 6, '6 times common listener invoked');
+		
+		LS.un('create', commonListener);
+		listenerInvoked = 0; //reset counter
+		LS.set(key, value);
+		LS.set(key, valueUpdated);
+		LS.setJson(keyJson, valueJson);
+		LS.setJson(keyJson, valueJsonUpdated);
+		LS.remove(key);
+		LS.remove(keyJson);
+		LS.clear();
+		//only update, remove and clear event will be listened 
+		assert.equal(listenerInvoked, 5, '5 times common listener invoked'); 
+		
+		LS.un('update', commonListener);
+		listenerInvoked = 0; //reset counter
+		LS.set(key, value);
+		LS.set(key, valueUpdated);
+		LS.setJson(keyJson, valueJson);
+		LS.setJson(keyJson, valueJsonUpdated);
+		LS.remove(key);
+		LS.remove(keyJson);
+		LS.clear();
+		//only remove and clear event will be listened 
+		assert.equal(listenerInvoked, 3, '3 times common listener invoked');
+		
+		LS.un('remove', commonListener);
+		listenerInvoked = 0; //reset counter
+		LS.set(key, value);
+		LS.set(key, valueUpdated);
+		LS.setJson(keyJson, valueJson);
+		LS.setJson(keyJson, valueJsonUpdated);
+		LS.remove(key);
+		LS.remove(keyJson);
+		LS.clear();
+		//only clear event will be listened 
+		assert.equal(listenerInvoked, 1, '1 times common listener invoked');		
+		
+		LS.un('clear', commonListener);
+		listenerInvoked = 0; //reset counter
+		LS.set(key, value);
+		LS.set(key, valueUpdated);
+		LS.setJson(keyJson, valueJson);
+		LS.setJson(keyJson, valueJsonUpdated);
+		LS.remove(key);
+		LS.remove(keyJson);
+		LS.clear();
+		//no event will be listened 
+		assert.equal(listenerInvoked, 0, '0 times common listener invoked');
+	});
+
 })(window);
