@@ -22,12 +22,33 @@
 	function isStringFloat(n){
 		return n.indexOf('.') > -1 ? true:false;
 	}
+	
+	function bindListenerForType(type, fn, scope){
+	
+	}
+	
+	function getFnId(type, fn){
+		return fn['___' + type + '_id'];
+	}
+	
+	function getFnScope(type, fn){
+		return fn['___' + type + '_scope'];
+	}
+	
+	function setFnId(type, fn, val){
+		fn['___' + type + '_id'] = val;
+	}
+	
+	function setFnScope(type, fn, val){
+		fn['___' + type + '_scope'] = val;
+	}
+	
 	/* trigger all the listeners registered with given type */
 	function trigger(type){
 		if(!listeners[type]) return;
 		var params = slice.call(arguments, 1),
 			callFn = function(fn){
-				fn.apply(fn.___scope, params);
+				fn.apply(getFnScope(type, fn), params);
 			};
 		listeners[type].forEach(callFn);
 	}
@@ -54,12 +75,7 @@
 	LSProto.getNumber = function(key){
 		if(empty(key)) return;		
 		var val = store.getItem(key);
-		if(isStringFloat(val)){
-			val = parseFloat(val);
-		} else {
-			val = parseInt(val, 10);
-		}
-		return val;
+		return isStringFloat(val) ? parseFloat(val) : parseInt(val, 10);
 	}
 	
 	LSProto.getBoolean = function(key){
@@ -106,9 +122,8 @@
 	   It will return the function which can be used for un-registering the listener. */
 	LSProto.on = function(type, fn, scope){
 		if(!listeners[type] || !isFunc(fn)) return;
-		scope = scope || window;		
-		fn.___scope = scope;
-		fn.___id = nextId();
+		setFnId(type, fn, nextId());
+		setFnScope(type, fn, scope || window);
 		listeners[type].push(fn);
 		return fn;
 	}
@@ -119,7 +134,7 @@
 		var fnArr = listeners[type],
 			len = fnArr.length;
 		while(len--){
-			if(fn.___id === fnArr[len].___id){
+			if(getFnId(type, fn) === getFnId(type, fnArr[len])){
 				fnArr.splice(len, 1);
 				return;
 			}
