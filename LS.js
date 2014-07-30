@@ -23,10 +23,6 @@
 		return n.indexOf('.') > -1 ? true:false;
 	}
 	
-	function bindListenerForType(type, fn, scope){
-	
-	}
-	
 	function getFnId(type, fn){
 		return fn['___' + type + '_id'];
 	}
