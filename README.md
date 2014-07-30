@@ -30,7 +30,7 @@ LS.on(event, listenerFunction, scope): function //this return function can be us
 events type: 'create'	listenerFunction callback param: key, value
 events type: 'update'	listenerFunction callback param: key, newValue, oldValue
 events type: 'remove'	listenerFunction callback param: key
-events type: 'clear'	listenerFunction callback param: key, value
+events type: 'clear'	listenerFunction callback param:
 
 //remove all the registered event for given event type
 LS.removeAllEventListeners(eventType) 
