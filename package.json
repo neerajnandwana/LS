@@ -2,6 +2,7 @@
   "name": "LS",
   "version": "0.0.1",
   "description": "Wrapper around the window.localStorage with useful functionality apart from normal get/set value.",
+  "license": "MIT",
   "repository": "https://github.com/neerajnandwana/LS",
   "bugs": { "url" : "https://github.com/neerajnandwana/LS/issues"
   },
