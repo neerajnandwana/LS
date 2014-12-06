@@ -1,0 +1,27 @@
+{
+  "name": "LS",
+  "version": "0.0.1",
+  "description": "Wrapper around the window.localStorage with useful functionality apart from normal get/set value.",
+  "repository": "https://github.com/neerajnandwana/LS",
+  "bugs": { "url" : "https://github.com/neerajnandwana/LS/issues"
+  },
+  "author": {
+    "name": "Neeraj Nandwana",
+    "email": "neerajnandwana@gmail.com"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "gulp"
+  },
+  "keywords": [
+    "HTML5",
+    "localStorage"
+  ],
+  "devDependencies": {
+    "gulp-qunit": "~0.2.1",
+    "gulp-util": "~2.2.14",
+    "gulp": "~3.5.1"
+  }
+}
