@@ -3,5 +3,5 @@ var gulp = require('gulp'),
 
 gulp.task('default', function() {
     return gulp.src('./test.html')
-        .pipe(qunit());
+        .pipe(qunit()); 
 });
