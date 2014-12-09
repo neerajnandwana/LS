@@ -3,7 +3,8 @@ LS
 
 
 **Continuous Integration:** [![Build Status](https://travis-ci.org/neerajnandwana/LS.svg?branch=master)](https://travis-ci.org/neerajnandwana/LS) <br/>
-Wrapper around the window.localStorage with useful functionality apart from normal get/set value. <br>
+
+Wrapper around the window.localStorage with useful functionality apart from normal get/set value. <br/>
 
 **For example**
 
