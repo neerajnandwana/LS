@@ -1,4 +1,4 @@
-LS https://travis-ci.org/neerajnandwana/LS.svg?branch=master
+LS
 ==
 
 
