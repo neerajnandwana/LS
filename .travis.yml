@@ -3,6 +3,7 @@ node_js:
   - "0.10"
 
 before_script:
+  - npm install gulp
   - npm install node-localstorage
   - gulp --version
   - date --rfc-2822
