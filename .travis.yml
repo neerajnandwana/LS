@@ -6,3 +6,7 @@ before_script:
   - npm install node-localstorage
   - gulp --version
   - date --rfc-2822
+
+branches:
+  only:
+    - master
