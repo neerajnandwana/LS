@@ -12,4 +12,4 @@ gulp.task('coveralls', function() {
     .pipe(coveralls());
 });
 
-gulp.task('default', ['default', 'coveralls'])
+gulp.task('default', ['default', 'coveralls']);
