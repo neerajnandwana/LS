@@ -14,6 +14,10 @@
     "node": ">=0.10.0"
   },
   "scripts": {
+    "test": "gulp --verbose && istanbul cover ./node_modules/mocha/bin/_mocha --report lcov -- -R spec",
+    "coveralls": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info && gulp coveralls && rm -rf ./coverage"
+  },
+  "scripts": {
     "test": "gulp --verbose"
   },
   "keywords": [
@@ -21,8 +25,11 @@
     "localStorage"
   ],
   "devDependencies": {
+    "coveralls": "^2.11.0",
     "gulp-qunit": "~0.2.1",
     "gulp-util": "~2.2.14",
-    "gulp": "~3.5.1"
+    "gulp": "~3.5.1",
+    "mocha": "^1.21.1",
+    "mocha-lcov-reporter": "^0.0.1"
   }
 }
