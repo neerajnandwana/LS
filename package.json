@@ -14,7 +14,7 @@
     "node": ">=0.10.0"
   },
   "scripts": {
-    "test": "gulp --verbose && istanbul cover ./node_modules/mocha/bin/_mocha --report lcov -- -R spec",
+    "test": "jshint index.js && istanbul cover ./node_modules/mocha/bin/_mocha --report lcov -- -R spec",
     "coveralls": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info && gulp coveralls && rm -rf ./coverage"
   },
   "keywords": [
