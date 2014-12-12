@@ -14,25 +14,15 @@
     "node": ">=0.10.0"
   },
   "scripts": {
-    "test": "jshint index.js && istanbul cover ./node_modules/mocha/bin/_mocha --report lcov -- -R spec",
-    "coveralls": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info && gulp coveralls && rm -rf ./coverage"
+    "test": "gulp"
   },
   "keywords": [
     "HTML5",
     "localStorage"
   ],
   "devDependencies": {
-    "through2": "^0.4.2",
-    "coveralls": "^2.11.0",
-    "event-stream": "^3.1.7",
     "gulp-qunit": "~0.2.1",
     "gulp-util": "~2.2.14",
     "gulp": "~3.5.1",
-    "istanbul": "^0.3.0",
-    "jshint": "^2.5.0",
-    "mocha": "^1.21.1",
-    "mocha-lcov-reporter": "^0.0.1",
-    "should": "^4.0.4",
-    "sinon": "^1.10.0"
   }
 }
