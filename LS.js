@@ -93,14 +93,14 @@
 		if(empty(key) || empty(value)) return;
 		var oldVal = LSProto.get(key);
 		store.setItem(key, value);
-		trigger(oldVal ? 'update': 'create', key, value, oldVal);
+		trigger(empty(oldVal) ? 'create': 'update', key, value, oldVal);
 	}
 	
 	LSProto.setJson = function(key, value){
 		if(empty(key) || empty(value)) return;
 		var oldVal = LSProto.get(key);
 		store.setItem(key, JSON.stringify(value));
-		trigger(oldVal ? 'update': 'create', key, value, oldVal);
+		trigger(empty(oldVal) ? 'create': 'update', key, value, oldVal);
 	}
 
 	LSProto.remove = function(key){
